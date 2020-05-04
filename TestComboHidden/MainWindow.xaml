@@ -4,8 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:TestComboHidden"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        Title="MainWindow" Width="800" Height="250"
-        mc:Ignorable="d">
+        Title="MainWindow" Width="800" Height="250" mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
     </Window.DataContext>
@@ -35,16 +34,17 @@
             <Button Command="{Binding AddClampCmd}" Content="Add" />
             <Button Command="{Binding RemoveClampCmd}" Content="Remove" />
             <ComboBox ItemsSource="{Binding ClampRecords}" />
-            <!-- Questo commentato va in eccezione subito
             <ComboBox ItemsSource="{Binding ClampRecords}">
-                <Style TargetType="ComboBox">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ComboBox>-->
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
         </StackPanel>
 
     </DockPanel>
