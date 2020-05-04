@@ -8,9 +8,10 @@
         mc:Ignorable="d">
     <Window.DataContext>
         <local:MainWindowViewModel />
-
     </Window.DataContext>
+
     <Window.Resources>
+
         <DataTemplate DataType="{x:Type local:ClampRecord}">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Index}" />
@@ -18,13 +19,32 @@
                 <TextBlock Text="{Binding Name}" />
             </StackPanel>
         </DataTemplate>
+
+        <Style TargetType="ComboBox">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     <DockPanel>
         <ListBox ItemsSource="{Binding ClampRecords}" />
         <StackPanel>
             <Button Command="{Binding AddClampCmd}" Content="Add" />
             <Button Command="{Binding RemoveClampCmd}" Content="Remove" />
-            <ComboBox ItemsSource="{Binding ClampRecords}" Visibility="{Binding ShowComboBox}" />
+            <ComboBox ItemsSource="{Binding ClampRecords}" />
+            <!-- Questo commentato va in eccezione subito
+            <ComboBox ItemsSource="{Binding ClampRecords}">
+                <Style TargetType="ComboBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox>-->
         </StackPanel>
 
     </DockPanel>
