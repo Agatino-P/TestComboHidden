@@ -50,7 +50,7 @@ namespace TestComboHidden
         private void loadClamps()
         {
             addClamp();
-           // addClamp();
+           addClamp();
             //addClamp();
         }
 
