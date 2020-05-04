@@ -19,13 +19,13 @@
             </StackPanel>
         </DataTemplate>
 
-        <Style TargetType="ComboBox">
+        <!--<Style TargetType="ComboBox">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
                     <Setter Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
 
     </Window.Resources>
     <DockPanel>
@@ -33,8 +33,8 @@
         <StackPanel>
             <Button Command="{Binding AddClampCmd}" Content="Add" />
             <Button Command="{Binding RemoveClampCmd}" Content="Remove" />
-            <ComboBox ItemsSource="{Binding ClampRecords}" />
-            <ComboBox ItemsSource="{Binding ClampRecords}">
+            <TextBlock Text="1st Combo" />
+            <ComboBox ItemsSource="{Binding ClampRecords}" SelectedIndex="0">
                 <ComboBox.Style>
                     <Style TargetType="ComboBox">
                         <Style.Triggers>
@@ -46,6 +46,23 @@
                 </ComboBox.Style>
             </ComboBox>
         </StackPanel>
+        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Visibility" Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="2">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="3">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
 
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <TextBlock Text="2nd Combo" />
+            <ComboBox ItemsSource="{Binding ClampRecords}" SelectedIndex="0" />
+        </StackPanel>
     </DockPanel>
 </Window>
