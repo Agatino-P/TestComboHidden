@@ -19,6 +19,7 @@
             </StackPanel>
         </DataTemplate>
 
+
         <!--<Style TargetType="ComboBox">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
@@ -26,43 +27,90 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>-->
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="3" />
+        </Style>
 
     </Window.Resources>
     <DockPanel>
-        <ListBox ItemsSource="{Binding ClampRecords}" />
-        <StackPanel>
-            <Button Command="{Binding AddClampCmd}" Content="Add" />
-            <Button Command="{Binding RemoveClampCmd}" Content="Remove" />
-            <TextBlock Text="1st Combo" />
-            <ComboBox ItemsSource="{Binding ClampRecords}" SelectedIndex="0">
-                <ComboBox.Style>
-                    <Style TargetType="ComboBox">
+        <Border BorderBrush="Azure" BorderThickness="1">
+            <StackPanel>
+                <ListBox ItemsSource="{Binding ClampRecords}" />
+                <Button Command="{Binding AddClampCmd}" Content="Add" />
+                <Button Command="{Binding RemoveClampCmd}" Content="Remove" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Yellow" BorderThickness="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="1st Combo:" />
+                <ComboBox VerticalAlignment="Top"
+                          ItemsSource="{Binding ClampRecords}"
+                          SelectedItem="{Binding ClampRecords[0]}">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Blue" BorderThickness="1">
+            <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Visible" />
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="2">
+                            <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="0">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="1">
                                 <Setter Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </ComboBox.Style>
-            </ComboBox>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
-            <StackPanel.Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Visibility" Value="Visible" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="2">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=ClampRecords.Count}" Value="3">
-                            <Setter Property="Visibility" Value="Collapsed" />
-                        </DataTrigger>
-
-                    </Style.Triggers>
-                </Style>
-            </StackPanel.Style>
-            <TextBlock Text="2nd Combo" />
-            <ComboBox ItemsSource="{Binding ClampRecords}" SelectedIndex="0" />
-        </StackPanel>
+                </StackPanel.Style>
+                <TextBlock Text="2nd Combo:" />
+                <ComboBox ItemsSource="{Binding ClampRecords}" SelectedItem="{Binding ClampRecords[0]}" />
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="Crimson" BorderThickness="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="3rd Control:" />
+                <Grid>
+                    <ContentControl Content="{Binding ClampRecords[0]}">
+                        <!--<ContentControl.Style>
+                            <Style TargetType="ContentControl">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=ClampRecord.Count, RelativeSource={RelativeSource Self}}" Value="1">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ContentControl.Style>-->
+                    </ContentControl>
+                    <ComboBox VerticalAlignment="Top"
+                              ItemsSource="{Binding ClampRecords}"
+                              SelectedItem="{Binding ClampRecords[0]}">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="0">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding Path=Items.Count, RelativeSource={RelativeSource Self}}" Value="1">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ComboBox.Style>
+                    </ComboBox>
+                </Grid>
+            </StackPanel>
+        </Border>
     </DockPanel>
 </Window>

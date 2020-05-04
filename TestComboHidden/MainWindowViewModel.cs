@@ -29,7 +29,7 @@ namespace TestComboHidden
         private RelayCommand _removeClampCmd;
         public RelayCommand RemoveClampCmd => _removeClampCmd ?? (_removeClampCmd = new RelayCommand(
             () => removeClamp(),
-            () => ClampRecords.Count>1 
+            () => ClampRecords.Count>0 
             ));
 
         public Visibility ShowComboBox => ClampRecords.Count() > 1 ? Visibility.Visible : Visibility.Collapsed;
@@ -43,7 +43,7 @@ namespace TestComboHidden
 
         private void removeClamp()
         {
-            if (ClampRecords.Count > 1)
+            if (ClampRecords.Count > 0)
                 ClampRecords.RemoveAt(0);
         }
 
